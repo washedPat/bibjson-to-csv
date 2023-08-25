@@ -1,7 +1,6 @@
 import argparse
 import json
 import csv
-import pprint
 
 HEADER = ["_xddid", "doi", "_gddid", "title", "type", "journal", "link_type", "link", "author", "publisher", "volume", "pages", "year"]
 
@@ -10,29 +9,23 @@ def bibjson_entry_to_row(entry):
     
     xddid = ""
     doi = ""
-    try:
-        for ids in entry["identifier"]:
+    for ids in entry.get("identifier", []):
             if ids["type"] == "doi":
                 doi = ids["id"]
             if ids["type"] == "_xddid":
                 xddid = ids["id"]
-        
-        gddid = entry["_gddid"]
-        title = entry["title"]
-        entry_type = entry["type"]
-        journal = entry["journal"]["name"]
-        link = entry["link"][0]["url"]
-        link_type = entry["link"][0]["type"]
-        author = '; '.join([item['name'] for item in entry['author']])
-        publisher = entry["publisher"]
-        volume = entry["volume"]
-        pages = entry["pages"]
-        year = entry["year"]
-    except Exception as e:
-        print(e)
-        pprint.pprint(entry)
-        exit(0)
 
+    gddid = entry.get("_gddid", "")
+    title = entry.get("title", "")
+    entry_type = entry.get("type", "")
+    journal = entry.get("journal", {}).get("name", "")
+    link = entry.get("link", [{}])[0].get("url", "")
+    link_type = entry.get("link", [{}])[0].get("type", "")
+    author = '; '.join([item['name'] for item in entry.get('author', [])])
+    publisher = entry.get("publisher", "")
+    volume = entry.get("volume", "")
+    pages = entry.get("pages", "")
+    year = entry.get("year", "")    
 
     row = [xddid, doi, gddid, title, entry_type, journal, link_type, link, author, publisher, volume, pages, year]
 
