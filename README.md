@@ -23,7 +23,7 @@ python main.py -i data/xdd_sample.bibjson -o data/xdd_sample.csv -f n/a
 ```
 With the full BibTeX/BibJSON spec
 ```shell
-python main.py -i data/xdd_sample.bibjson -o data/xdd_sample.csv --full-spec 
+python main.py -i data/xdd_sample.bibjson -o data/xdd_sample.csv --full-spec true
 ```
 Help
 ```
