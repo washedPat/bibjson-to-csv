@@ -3,7 +3,16 @@ This is a data conversion tool used to parse BibJSON files and transform them in
 I decided to use Python as it has great standard libraries for handling strings, parsing arguments, json and csv files.
 The program is self contained in the `main.py` file. 
 
+## Requirements
+Either:
+- Python
+- Docker
+
 ## Usage
+You are able to run the parser either directly from Python or you can build and run the Docker container.
+
+### Python
+
 With default filler
 ```shell
 python main.py -i data/xdd_sample.bibjson -o data/xdd_sample.csv
@@ -15,6 +24,30 @@ python main.py -i data/xdd_sample.bibjson -o data/xdd_sample.csv -f n/a
 Help
 ```
 python main.py -h
+```
+
+### Docker
+Build the container
+```shell
+docker build -t bibjson-to-csv .
+```
+Run the container with default missing value filler
+```shell
+docker run \
+-v $(pwd)/data:/usr/src/app/data \
+bibjson-to-csv \
+-i /usr/src/app/data/xdd_sample.bibjson \
+-o /usr/src/app/data/xdd_sample.csv
+```
+
+Run the container with custom missing value filler
+```shell
+docker run \
+-v $(pwd)/data:/usr/src/app/data \
+bibjson-to-csv \
+-i /usr/src/app/data/xdd_sample.bibjson \
+-o /usr/src/app/data/xdd_sample.csv \
+-f n/a
 ```
 
 ## Considerations and Assumptions
