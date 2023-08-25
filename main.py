@@ -42,6 +42,7 @@ def common_entry_to_row(entry, filler):
 def bibjson_entry_to_row(entry, filler):
     return common_entry_to_row(entry, filler)
 
+# adds the full spec of fields to the common fields
 def bibjson_entry_to_row_full(entry, filler):
     common_row = common_entry_to_row(entry, filler)
 
@@ -72,20 +73,19 @@ def bibjson_entry_to_row_full(entry, filler):
 def bibJSONtoCSV(in_file, out_file, filler, full_spec):
     bibjson_data = json.load(in_file) 
 
+    def write_rows(writer, row_func):
+        for entry in bibjson_data:
+            row = row_func(entry, filler)
+            writer.writerow(row)
+
     with out_file as f:
         writer = csv.writer(f)
         if not full_spec:
             writer.writerow(SMALL_SPEC_HEADER)
-            
-            for entry in bibjson_data:
-                row = bibjson_entry_to_row(entry, filler)
-                writer.writerow(row)
+            write_rows(writer, bibjson_entry_to_row)
         else:
             writer.writerow(FULL_SPEC_HEADER)
-            
-            for entry in bibjson_data:
-                row = bibjson_entry_to_row_full(entry, filler)
-                writer.writerow(row)
+            write_rows(writer, bibjson_entry_to_row_full)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
