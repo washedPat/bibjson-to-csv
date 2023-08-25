@@ -4,6 +4,15 @@ I decided to use Python as it has great standard libraries for handling strings,
 The program is self contained in the `main.py` file. 
 
 ## Usage
+With default filler
 ```shell
 python main.py -i data/xdd_sample.bibjson -o data/xdd_sample.csv
+```
+With custom filler
+```shell
+python main.py -i data/xdd_sample.bibjson -o data/xdd_sample.csv -f n/a
+```
+Help
+```
+python main.py -h
 ```
