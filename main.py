@@ -95,7 +95,7 @@ if __name__ == "__main__":
     parser.add_argument("-f", "--missing-column-filler", 
                         help="value that should be used as the filler for missing values in a column. the default is just an empty string", 
                         type=str, default="", required=False)
-    parser.add_argument("--full-spec", help="Use the full spec of the bibtex/bibjson", type=bool, default=False, required=False)
+    parser.add_argument("--full-spec", help="Use the full spec of the bibtex/bibjson", action="store_true", required=False)
 
     args = parser.parse_args()
 

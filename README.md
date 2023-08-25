@@ -23,7 +23,7 @@ python main.py -i data/xdd_sample.bibjson -o data/xdd_sample.csv -f n/a
 ```
 With the full BibTeX/BibJSON spec
 ```shell
-python main.py -i data/xdd_sample.bibjson -o data/xdd_sample.csv --full-spec true
+python main.py -i data/xdd_sample.bibjson -o data/xdd_sample.csv --full-spec
 ```
 Help
 ```
@@ -59,7 +59,7 @@ docker run \
 bibjson-to-csv \
 -i /usr/src/app/data/xdd_sample.bibjson \
 -o /usr/src/app/data/xdd_sample.csv \
---full-spec true
+--full-spec
 ```
 Help
 ```shell
