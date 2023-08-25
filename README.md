@@ -8,6 +8,7 @@ When writing the transformer, I initially just supported the common keys within 
 After further examination of the BibJSON specification, I found that the default set of keys is from the BibTeX specification.
 The BibJSON specification is very loose and allows for missing values. As such I found it reasonable to enable the full specification via a feature flag.
 By default the program fills missing values with nothing, leaving an empty value in row. However I added a flag to allow for custom fillers to suite the needs of the user.
+To enable the most flexibility, the user should pass the `--full-spec` flag.
 
 ## Requirements
 Either:
