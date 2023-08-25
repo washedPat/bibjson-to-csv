@@ -1,7 +1,13 @@
 # BibJSON To CSV - Data Engineer - Programming Test
 This is a data conversion tool used to parse BibJSON files and transform them into CSV file.
-I decided to use Python as it has great standard libraries for handling strings, parsing arguments, json and csv files.
+I decided to use Python as it has a great set of standard libraries for handling strings, parsing arguments, json and csv files.
 The program is self contained in the `main.py` file. 
+
+## Considerations
+When writing the transformer, I initially just supported the common keys within each entry of the BibJSON file. 
+After further examination of the BibJSON specification, I found that the default set of keys is from the BibTeX specification.
+The BibJSON specification is very loose and allows for missing values. As such I found it reasonable to enable the full specification via a feature flag.
+By default the program fills missing values with nothing, leaving an empty value in row. However I added a flag to allow for custom fillers to suite the needs of the user.
 
 ## Requirements
 Either:
@@ -68,9 +74,3 @@ docker run \
 bibjson-to-csv \
 -h
 ```
-
-## Considerations and Assumptions
-Per the BibJSON spec, the default set of keys are based off of the bibtex spec. My transformer currently only utilizes the apparent keys in each entry of the provided sample. 
-Each sample generally has the same core keys and many of the default bibtex keys are missing. Making my transformer to adhere to these missing keys would be a set of minor changes.
-The provided sample file is quite small, so regarding memory usage it isn't too bad, but if the transformer is used with a very large file, the potential memory usage could be a source of issues.
-

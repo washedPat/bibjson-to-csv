@@ -12,6 +12,7 @@ FULL_SPEC_HEADER = [
 ]
 
 # common fields held between each sample provided by the sample bibjson file
+# the filler argument is used to provide custom fillers
 def common_entry_to_row(entry, filler):
     row = []
     
@@ -70,7 +71,12 @@ def bibjson_entry_to_row_full(entry, filler):
 
     return full_row
 
-def bibJSONtoCSV(in_file, out_file, filler, full_spec):
+# transformer logic
+# 1. parse bibjson file
+# 2. open csv file
+# 3. write the appropriate header
+# 4. write the appropriate rows for each entry with the optional filler value for missing values
+def bibJSONtoCSV(in_file, out_file, filler="", full_spec=False):
     bibjson_data = json.load(in_file) 
 
     def write_rows(writer, row_func):
