@@ -50,6 +50,14 @@ bibjson-to-csv \
 -f n/a
 ```
 
+Help
+```shell
+docker run \
+-v $(pwd)/data:/usr/src/app/data \
+bibjson-to-csv \
+-h
+```
+
 ## Considerations and Assumptions
 Per the BibJSON spec, the default set of keys are based off of the bibtex spec. My transformer currently only utilizes the apparent keys in each entry of the provided sample. 
 Each sample generally has the same core keys and many of the default bibtex keys are missing. Making my transformer to adhere to these missing keys would be a set of minor changes.
