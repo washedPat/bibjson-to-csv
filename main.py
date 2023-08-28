@@ -30,7 +30,8 @@ def common_entry_to_row(entry, filler):
     journal = entry.get("journal", {}).get("name", filler)
     link = entry.get("link", [{}])[0].get("url", filler)
     link_type = entry.get("link", [{}])[0].get("type", filler)
-    author = '; '.join([item['name'] for item in entry.get('author', [])])
+    # separate each author with a semi colon. this is to allow for multiple authors and to clearly separate them
+    author = '; '.join([item['name'] for item in entry.get('author', [])]) 
     publisher = entry.get("publisher", filler)
     volume = entry.get("volume", filler)
     pages = entry.get("pages", filler)
