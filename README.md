@@ -10,7 +10,7 @@ The BibJSON specification is very loose and allows for missing values. As such I
 By default the program fills missing values with nothing, leaving an empty value in row. However I added a flag to allow for custom fillers to suite the needs of the user.
 To enable the most flexibility, the user should pass the `--full-spec` flag.
 A special note about the authors column is that each author is separated by a semi colon. This is to make it easily parsable and to make it easy to read if the user were to query for the authors.
-There are some limitations of this transformer. The nature of JSON allows for lots of nested objects. This fact alongside the loose specification of BibJSON makes it difficult to fully 1:1 transformer. Given this I did my best to try to allow for the full specification.
+There are some limitations of this transformer. The nature of JSON allows for lots of nested objects. This fact alongside the loose specification of BibJSON makes it difficult to make a fully 1:1 transformer. Given this I did my best to try to allow for the full specification.
 
 ## Requirements
 Either:
